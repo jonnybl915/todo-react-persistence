@@ -13,6 +13,19 @@ const resourceSchema = new Schema({
   createdAt:    { type: Date, default: Date.now }
 
 })
+/*
+toDoText: "Take out the trash",
+isDone: false,
+isHighPriority: false,
+*/
+const toDoSchema = new Schema({
+
+  toDoText:       { type: String, required: true },
+  isDone:         {type: Boolean, default: false },
+  isHighPriority: {type: Boolean, default: false},
+  createdAt:      { type: Date, default: Date.now }
+
+})
 
 
 
@@ -20,5 +33,6 @@ module.exports = {
    /*
     * NOTE: you would ideally change the export-value and the model-name
     */
-  Resource: createModel('Resource', resourceSchema)
+  Resource: createModel('Resource', resourceSchema),
+  ToDo: createModel('ToDo', toDoSchema)
 }
