@@ -5,19 +5,20 @@ const apiRouter = Router()
  * NOTE: the model for the data-table should not have the name 'Resource'
  */
 let Resource = require('../db/schema.js').Resource
+let ToDo = require('../db/schema.js').ToDo
 
 apiRouter
 /*
  * NOTE: the route should have a name that matches the name of the data-table
  */
- .get('/resources', function(req, res){
-   Resource.find(req.query , function(err, results){
+ .get('/todos', function(req, res){
+   ToDo.find(req.query , function(err, results){
      if(err) return res.json(err)
      res.json(results)
    })
  })
- .post('/resources', function(req, res){
-     let newRecord = new Resource(req.body)
+ .post('/todos', function(req, res){
+     let newRecord = new ToDo(req.body)
 
      newRecord.save(function(err, record){
         if(err) return res.status(500).send(err)
