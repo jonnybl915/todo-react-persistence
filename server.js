@@ -1,4 +1,4 @@
-
+global.PROJECT_NAME = 'todo-react-persistence'
 
 if (!global.PROJECT_NAME) { //« set by npm run init-dev »
 	throw new Error('no project name set. did you forget to run "npm run init-dev"?')
