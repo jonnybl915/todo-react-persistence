@@ -11,13 +11,13 @@ apiRouter
 /*
  * NOTE: the route should have a name that matches the name of the data-table
  */
- .get('/todos', function(req, res){
+ .get('/todo', function(req, res){
    ToDo.find(req.query , function(err, results){
      if(err) return res.json(err)
      res.json(results)
    })
  })
- .post('/todos', function(req, res){
+ .post('/todo', function(req, res){
      let newRecord = new ToDo(req.body)
 
      newRecord.save(function(err, record){

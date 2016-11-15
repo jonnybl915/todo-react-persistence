@@ -22,8 +22,7 @@ const toDoSchema = new Schema({
 
   toDoText:       { type: String, required: true },
   isDone:         {type: Boolean, default: false },
-  isHighPriority: {type: Boolean, default: false},
-  createdAt:      { type: Date, default: Date.now }
+  isHighPriority: {type: Boolean, default: false}
 
 })
 
@@ -33,6 +32,5 @@ module.exports = {
    /*
     * NOTE: you would ideally change the export-value and the model-name
     */
-  Resource: createModel('Resource', resourceSchema),
   ToDo: createModel('ToDo', toDoSchema)
 }
