@@ -4,7 +4,10 @@ const Backbone = require('backbone');
 
 
 
-let ToDoModel = Backbone.Model.extend({});
+let ToDoModel = Backbone.Model.extend({
+
+
+});
 
 
 const HomeView = React.createClass({
