@@ -1,7 +1,7 @@
 const ReactDOM = require('react-dom');
 const React = require('react');
 const Backbone = require('backbone');
-const {toDoModel, toDoCollection} = require('./model.js')
+const {toDoModel, toDoCollection} = require('./models.js')
 
 
 
@@ -10,8 +10,8 @@ const HomeView = React.createClass({
 
   getInitialState: function(){
 
-    let defaultToDo = new ToDoModel();
-    let defaultToDo2 = new ToDoModel();
+    let defaultToDo = new toDoModel();
+    let defaultToDo2 = new toDoModel();
 
     let modelAttributes = {
        toDoText: "Take out the trash",
@@ -41,10 +41,16 @@ const HomeView = React.createClass({
  },
 
  componentWillMount: function() {
-   let newToDoColl = new toDoCollection();
-   newToDoColl.fetch().then(function(){
-     self.setState(toDoData: newToDoColl)
+   let self = this;
+   Backbone.Events.on('new-todo', function(){
+
+     let newToDoColl = new toDoCollection();
+     newToDoColl.fetch().then(function(){
+       self.setState(toDoData: newToDoColl)
+     })
+
    })
+
  },
 
  _removeToDoItemFromState: function(item){
@@ -81,8 +87,13 @@ handleKeyPress: function(target){
         isDone: isDone,
         isHighPriority: isHighPriority,
       }
-      let newToDoMod = new ToDoModel();
+      let newToDoMod = new toDoModel();
       newToDoMod.set(modAttributes);
+
+      newToDoMod.save().then(function(serverRes){
+       console.log('new-model-in-db: ', newToDoMod)
+       Backbone.Events.trigger('new-todo')
+     })
 
       let copyOfToDoListData = this.state.toDoData.map(function(m){ return m })
       copyOfToDoListData.push(newToDoMod);
