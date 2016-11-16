@@ -1,13 +1,10 @@
 const ReactDOM = require('react-dom');
 const React = require('react');
 const Backbone = require('backbone');
+const ToDoModel = 
 
 
 
-let ToDoModel = Backbone.Model.extend({
-
-
-});
 
 
 const HomeView = React.createClass({
