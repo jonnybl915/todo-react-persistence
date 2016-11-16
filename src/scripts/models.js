@@ -10,7 +10,6 @@ const toDoCollection = Backbone.Collection.extend({
    url: "/api/todos"
 })
 
-
 module.exports = {
    toDoModel,
    toDoCollection

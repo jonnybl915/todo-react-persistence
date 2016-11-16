@@ -1,1 +1,1 @@
-console.error("SyntaxError: /Users/jonathandavidblack/TIY-Frontend-Fall-2016/assignments/todo-react-persistence/src/scripts/app.js: Unexpected token (10:0) while parsing file: /Users/jonathandavidblack/TIY-Frontend-Fall-2016/assignments/todo-react-persistence/src/scripts/app.js");
+console.error("Error: Cannot find module './model.js' from '/Users/jonathandavidblack/TIY-Frontend-Fall-2016/assignments/todo-react-persistence/src/scripts'");

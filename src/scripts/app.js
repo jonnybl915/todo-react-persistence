@@ -1,8 +1,7 @@
 const ReactDOM = require('react-dom');
 const React = require('react');
 const Backbone = require('backbone');
-const ToDoModel = 
-
+const {toDoModel, toDoCollection} = require('./model.js')
 
 
 
@@ -39,6 +38,13 @@ const HomeView = React.createClass({
     // console.log("todo models: ", toDoModelsListArray);
 
     return startingStateObject;
+ },
+
+ componentWillMount: function() {
+   let newToDoColl = new toDoCollection();
+   newToDoColl.fetch().then(function(){
+     self.setState(toDoData: newToDoColl)
+   })
  },
 
  _removeToDoItemFromState: function(item){
