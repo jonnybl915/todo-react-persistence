@@ -33,7 +33,7 @@ const HomeView = React.createClass({
 
     let startingStateObject = {
        isSomethingGreat: false,
-       toDoData : toDoModelsListArray
+       toDoData : this.props.toDoDataColl
     }
     // console.log("todo models: ", toDoModelsListArray);
 
@@ -185,12 +185,11 @@ const SingleToDoItem = React.createClass({
   }
 })
 
-
-ReactDOM.render(<HomeView/>, document.querySelector('#app-container'))
-
-
-
-
+let toDoCollectionInstance = new toDoCollection();
+toDoCollectionInstance.fetch().then(function(){
+  console.log("collection instance: ", toDoCollectionInstance);
+  ReactDOM.render(<HomeView toDoDataColl={toDoCollectionInstance}/>, document.querySelector('#app-container'))
+})
 
 // import React from 'react'
 // import ReactDOM from 'react-dom'
