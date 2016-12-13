@@ -10,32 +10,10 @@ const HomeView = React.createClass({
 
   getInitialState: function(){
 
-    let defaultToDo = new toDoModel();
-    let defaultToDo2 = new toDoModel();
-
-    let modelAttributes = {
-       toDoText: "Take out the trash",
-       isDone: false,
-       isHighPriority: false,
-    }
-    let modelAtributes2 = {
-       toDoText: "Do Work",
-       isDone: false,
-       isHighPriority: true,
-    }
-
-    defaultToDo.set(modelAttributes);
-    defaultToDo2.set(modelAtributes2);
-
-    let toDoModelsListArray = [];
-     toDoModelsListArray.push(defaultToDo);
-     toDoModelsListArray.push(defaultToDo2);
-
     let startingStateObject = {
        isSomethingGreat: false,
        toDoData : this.props.toDoDataColl
     }
-    // console.log("todo models: ", toDoModelsListArray);
 
     return startingStateObject;
  },
@@ -47,6 +25,7 @@ const HomeView = React.createClass({
      let newToDoColl = new toDoCollection();
      newToDoColl.fetch().then(function(){
        self.setState(toDoData: newToDoColl)
+
      })
 
    })
@@ -54,14 +33,23 @@ const HomeView = React.createClass({
  },
 
  _removeToDoItemFromState: function(item){
-
+    let self = this;
    let targetItem = item.target.parentNode.parentNode.parentNode;
+   console.log("Target model :", targetItem);
    let copyOfToDoListDataToDeleteFrom = this.state.toDoData.filter(function(itm){
+
+   let idOfItemToDestroy = itm.cid;
+   console.log("id of item to destroy: ", idOfItemToDestroy);
+   if (targetItem.id === idOfItemToDestroy) {
+     itm.destroy();
+     console.log("DDestroyeDD");
+   }
+
    return targetItem.id !== itm.cid;
 })
 
    let newState = {toDoData : copyOfToDoListDataToDeleteFrom}
-   this.setState(newState)
+   self.setState(newState)
 },
 
 handleKeyPress: function(target){
@@ -156,11 +144,11 @@ const ToDoItemList = React.createClass({
     })
 
     return (
-        <div>
-          <ul className="ul-of-todo-items">
-            {arrayOfToDoListItems}
-          </ul>
-        </div>
+            <div>
+              <ul className="ul-of-todo-items">
+                {arrayOfToDoListItems}
+              </ul>
+            </div>
     )
   }
 })

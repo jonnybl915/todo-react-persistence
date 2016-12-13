@@ -27,7 +27,7 @@ apiRouter
         res.json(objCopy)
      })
  })
- .delete('/todo/:_id', function(req, res){
+ .delete('/todo', function(req, res){
    ToDo.remove({ _id: req.params._id}, (err) => {
      if(err) return res.json(err)
      res.json({
